@@ -15,6 +15,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
+
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
@@ -47,6 +53,14 @@ public class MainActivity extends AppCompatActivity {
     Button mButtonSend, testButton;
     measureProcess analogValues;
 
+    List<Entry> list = new ArrayList<Entry>();// 측정 전류값 저장 리스트
+    LineDataSet ls; //차트에 표시할 데이터 셋
+    List<ILineDataSet> dataSets;
+    LineData ldata;
+
+    LineChart chart ;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,17 +71,26 @@ public class MainActivity extends AppCompatActivity {
         txt = (TextView)findViewById(R.id.textView);
 
         mButtonSend = (Button)findViewById(R.id.button1);
-        testButton = (Button)findViewById(R.id.button2);
-        valuetxt=(TextView)findViewById(R.id.textView2);
+
         txt.setText("testing");
-        analogValues = new measureProcess();
+        analogValues = new measureProcess(100);
+        chart = (LineChart) findViewById(R.id.chart); //라인차트 추가
 
-        testButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        // no description text
+        chart.getDescription().setEnabled(false);
 
-            }
-        });
+
+        list.add(new Entry(2,3));
+        ls= new LineDataSet(list,"전류량");
+        dataSets = new ArrayList<ILineDataSet>();
+        dataSets.add(ls);
+        ldata = new LineData(dataSets);
+        chart.setData(ldata);
+
+
+
+
+
 
         mButtonSend.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -183,11 +206,17 @@ public class MainActivity extends AppCompatActivity {
                                             String aVal= data.substring(0,idx);
 
                                             analogValues.pushValue(aVal);
-                                            String s="측정 값\n";
-                                            for(int i=0; i < analogValues.getLastPosition();i++){
-                                                s= s+ analogValues.getValueAt(i)+'\n';
+                                            list.clear();
+                                            for(int i=0 ; i < analogValues.getLastPosition();i++){
+                                                list.add(new Entry(i,analogValues.getValueAt(i)));
                                             }
-                                            valuetxt.setText(s);
+                                            ls= new LineDataSet(list,"전류량");
+                                            dataSets = new ArrayList<ILineDataSet>();
+                                            dataSets.add(ls);
+                                            ldata = new LineData(dataSets);
+                                            chart.setData(ldata);
+
+                                            chart.invalidate();
 
                                         }
 
