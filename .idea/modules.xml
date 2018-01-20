@@ -3,9 +3,12 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/MPChartLib/MPChartLib.iml" filepath="$PROJECT_DIR$/MPChartLib/MPChartLib.iml" />
+      <module fileurl="file://F:\MyProject\PowerMeasure\PowerMeasure\MPChartLib\MPChartLib.iml" filepath="F:\MyProject\PowerMeasure\PowerMeasure\MPChartLib\MPChartLib.iml" />
       <module fileurl="file://F:\MyProject\PowerMeasure\PowerMeasure\MyApplication.iml" filepath="F:\MyProject\PowerMeasure\PowerMeasure\MyApplication.iml" />
       <module fileurl="file://$PROJECT_DIR$/PowerMeasure.iml" filepath="$PROJECT_DIR$/PowerMeasure.iml" />
+      <module fileurl="file://F:\MyProject\PowerMeasure\PowerMeasure\PowerMeasure.iml" filepath="F:\MyProject\PowerMeasure\PowerMeasure\PowerMeasure.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://F:\MyProject\PowerMeasure\PowerMeasure\app\app.iml" filepath="F:\MyProject\PowerMeasure\PowerMeasure\app\app.iml" />
     </modules>
   </component>
 </project>

@@ -1,5 +1,6 @@
 package com.example.js.myapplication;
 
+import android.app.TabActivity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
@@ -12,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,8 +29,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
+@SuppressWarnings("deprecation") // 아이스크림 샌드위치 이후 버전에서 탭 액티비티를 사용하면 경고가 나오는것을 막아주기 위한 코드
 
-public class MainActivity extends AppCompatActivity {
+
+public class MainActivity extends TabActivity {
 
     BluetoothAdapter mBluetoothAdapter; //블루투스 어댑터
     static final int REQUEST_ENABLE_BT = 10;  //블루투스 활성 상태 식별자
@@ -66,6 +70,22 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //******************탭 사용 하기 코드 *************************
+
+        TabHost tabHost = getTabHost();
+
+        TabHost.TabSpec tabSpec1 = tabHost.newTabSpec("tab1").setIndicator("1");
+        tabSpec1.setContent(R.id.tab1);
+        tabHost.addTab(tabSpec1);
+
+        TabHost.TabSpec tabSpec2 = tabHost.newTabSpec("tab2").setIndicator("2");
+        tabSpec2.setContent(R.id.tab2);
+        tabHost.addTab(tabSpec2);
+
+        tabHost.setCurrentTab(0);
+
+        //******************************************************************
 
         //mEditReceive = (EditText)findViewById(R.id.receiveString);
         txt = (TextView)findViewById(R.id.textView);
