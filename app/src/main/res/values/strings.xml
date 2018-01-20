@@ -1,4 +1,4 @@
 <resources>
-    <string name="app_name">My Application</string>
-    <string name="strBtn1">버튼!</string>
+    <string name="app_name">전력측정기</string>
+    <string name="strBtn1">블루투스 연결</string>
 </resources>

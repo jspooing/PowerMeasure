@@ -75,11 +75,11 @@ public class MainActivity extends TabActivity {
 
         TabHost tabHost = getTabHost();
 
-        TabHost.TabSpec tabSpec1 = tabHost.newTabSpec("tab1").setIndicator("1");
+        TabHost.TabSpec tabSpec1 = tabHost.newTabSpec("tab1").setIndicator("실시간 전류 측정");
         tabSpec1.setContent(R.id.tab1);
         tabHost.addTab(tabSpec1);
 
-        TabHost.TabSpec tabSpec2 = tabHost.newTabSpec("tab2").setIndicator("2");
+        TabHost.TabSpec tabSpec2 = tabHost.newTabSpec("tab2").setIndicator("일별 전력 사용량");
         tabSpec2.setContent(R.id.tab2);
         tabHost.addTab(tabSpec2);
 
