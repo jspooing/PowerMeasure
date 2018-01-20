@@ -17,10 +17,15 @@ import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.github.mikephil.charting.charts.HorizontalBarChart;
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 
 import java.io.InputStream;
@@ -61,9 +66,13 @@ public class MainActivity extends TabActivity {
     LineDataSet ls; //차트에 표시할 데이터 셋
     List<ILineDataSet> dataSets;
     LineData ldata;
-
     LineChart chart ;
 
+    // 가로 막대 그래프에 사용하는 변수
+    ArrayList<BarEntry> hbList = new ArrayList<BarEntry>();
+    HorizontalBarChart hbChart;   //일별 전력 사용량 측정에 사용할 변수
+    BarDataSet hbDataset;
+    BarData hbData;
 
 
     @Override
@@ -95,10 +104,11 @@ public class MainActivity extends TabActivity {
         txt.setText("testing");
         analogValues = new measureProcess(100);
         chart = (LineChart) findViewById(R.id.chart); //라인차트 추가
+        hbChart = (HorizontalBarChart) findViewById(R.id.chart2);
 
         // no description text
         chart.getDescription().setEnabled(false);
-
+        hbChart.getDescription().setEnabled(false);
 
         list.add(new Entry(2,3));
         ls= new LineDataSet(list,"전류량");
@@ -106,6 +116,21 @@ public class MainActivity extends TabActivity {
         dataSets.add(ls);
         ldata = new LineData(dataSets);
         chart.setData(ldata);
+
+        //가로막대 그래프 초기 값 설정
+        for(int i =0 ; i < 8; i++){
+            float val = (float) (Math.random()*100);
+            hbList.add(new BarEntry(i*10f,val));
+        }
+
+        hbDataset = new BarDataSet(hbList,"전기 사용량");
+        hbDataset.setDrawIcons(false);
+
+        ArrayList<IBarDataSet> hbDataSets = new ArrayList<IBarDataSet>();
+        hbDataSets.add(hbDataset);
+
+        hbData = new BarData(hbDataSets);
+        hbChart.setData(hbData);
 
 
 
@@ -294,6 +319,7 @@ public class MainActivity extends TabActivity {
         }
         return selectedDevice;
     }
+
 
 
     @Override

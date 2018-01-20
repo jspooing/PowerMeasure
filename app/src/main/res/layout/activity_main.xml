@@ -48,10 +48,12 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
-                    <TextView
+                    <com.github.mikephil.charting.charts.HorizontalBarChart
+                        android:id="@+id/chart2"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="두번째 화면" />
+                        android:background="@android:color/white" />
+
 
                 </LinearLayout>
 
